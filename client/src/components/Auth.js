@@ -3,31 +3,7 @@ import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 class SignPage extends Component {
-	// constructor(props) {
-	// 	super(props);
-	// 	this.state = { apiResponse: "" };
-	// 	this.onChangeUserName = this.onChangeUserName.bind(this);
-	// 	this.onChangeEmail = this.onChangeEmail.bind(this);
-	// 	this.onChangePassword = this.onChangePassword.bind(this);
-	// 	this.onSubmit = this.onSubmit.bind(this);
-	// 	
-	// 	this.state = {
-	// 		userName : '',
-	// 		email : '',
-	// 		password : ''		  
-	// 	}
-	// }
-	// 
-	// callAPI() {
-	// 	fetch("http://localhost:8000/user/")
-	// 		.then(res => res.text())
-	// 		.then(res => this.setState({ apiResponse: res }));
-	// }
-	// 
-	// componentWillMount() {
-	// 	this.callAPI();
-	// }
-	// 
+	
 	constructor(props) {
 		super(props);
 		// this.emailElement = React.createRef();
@@ -38,7 +14,7 @@ class SignPage extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 		
 		this.state = {
-			userName : '',
+			username : '',
 		    email : '',
 		    password : ''		  
 		}
@@ -47,7 +23,7 @@ class SignPage extends Component {
 	  
 	onChangeUserName(event){
 		this.setState({
-		  userName: event.target.value
+		  username: event.target.value
 		});
 	}
 	
@@ -67,7 +43,7 @@ class SignPage extends Component {
 	  event.preventDefault()
 	  
 	  const userData = {
-		  userName : this.state.userName,
+		  username : this.state.username,
 		  email : this.state.email,
 		  password : this.state.password
 	  };
@@ -75,15 +51,15 @@ class SignPage extends Component {
 	console.log(userData);
 	
 	
-	// axios.post('http://localhost:8000/user/signup', userData)
-	// 	.then((res) => {
-	// 	console.log(res.data)
-	// }).catch((error) => {
-	// 	console.log(error)
-	// });
+	axios.post('http://localhost:8000/user/signup', userData)
+		.then((res) => {
+		console.log(res.data)
+	}).catch((error) => {
+		console.log(error)
+	});
 
 	  this.setState({
-		  userName: '',
+		  username: '',
 		  email : '',
 		  password : ''	})
 	// window.location = '/';
@@ -94,7 +70,7 @@ class SignPage extends Component {
 			<Form onSubmit={this.onSubmit}>
 				<FormGroup>
 				<Label for="name">Email</Label>
-				<Input type="text" name="name" id="name" value={this.state.userName} onChange={this.onChangeUserName} placeholder="Name" />
+				<Input type="text" name="name" id="name" value={this.state.username} onChange={this.onChangeUserName} placeholder="Name" />
 			  </FormGroup>
 			  <FormGroup>
 				<Label for="exampleEmail">Email</Label>
@@ -104,7 +80,6 @@ class SignPage extends Component {
 				<Label for="examplePassword">Password</Label>
 				<Input type="password" name="password" id="examplePassword" value={this.state.password} onChange={this.onChangePassword}  placeholder="password placeholder" />
 			  </FormGroup>
-			  // <p className="App-intro">;{this.state.apiResponse}</p>
 			  <Button type="submit">Submit</Button>
 			</Form>
 		);

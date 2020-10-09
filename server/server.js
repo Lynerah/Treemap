@@ -48,7 +48,7 @@ app.use(auth);
 // });
 
 app.post('./data/arbustrum', dataRoutes);
-// app.post('/user', userRoutes);
+app.post('/user', userRoutes);
 
 
 const server = http.createServer((req, res) => {
